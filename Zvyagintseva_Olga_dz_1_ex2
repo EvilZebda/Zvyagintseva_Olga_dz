@@ -1,0 +1,70 @@
+# Создать список, состоящий из кубов нечётных чисел от 1 до 1000 (куб X - третья степень числа X):
+cube_element = 0
+cube_list = []
+for i in range(1, 1001):
+    if i % 2 != 0:
+        cube_element = i ** 3
+        cube_list.append(cube_element)
+
+# print(cube_list)
+
+# Вычислить сумму тех чисел из этого списка, сумма цифр которых делится на 7 без остатка
+i = 0
+sum_list = []
+sum_list2 = []
+
+# Находим сумму цифр всех чисел из списка
+for number in range(len(cube_list)):
+    cube = cube_list[i]
+    sum_digits = 0
+    while cube > 0:
+        ending_element = cube % 10
+        cube = cube // 10
+        sum_digits += ending_element
+    sum_list.append(sum_digits)
+    # создаем список, в котором те числа, сумма цифр которых без остатка делится на 7
+    while i < len(sum_list):
+        if sum_list[i] % 7 == 0:
+            sum_list2.append(cube_list[i])
+        i += 1
+    # находим суму этих чисел
+    result = sum(sum_list2)
+
+# print(sum_list)
+# print(sum_list2)
+print(result)
+
+
+# К каждому элементу списка добавить 17
+cube_list2 = []
+for element in cube_list:
+    element += 17
+    cube_list2.append(element)
+
+# print(cube_list2)
+# Вычислить сумму тех чисел из этого списка, сумма цифр которых делится на 7 без остатка
+i = 0
+sum_list = []
+sum_list2 = []
+
+# Находим сумму цифр всех чисел из списка
+for number in range(len(cube_list2)):
+    cube = cube_list2[i]
+    sum_digits = 0
+    while cube > 0:
+        ending_element = cube % 10
+        cube = cube // 10
+        sum_digits += ending_element
+    sum_list.append(sum_digits)
+    # создаем список, в котором те числа, сумма цифр которых без остатка делится на 7
+    while i < len(sum_list):
+        if sum_list[i] % 7 == 0:
+            sum_list2.append(cube_list2[i])
+        i += 1
+    # находим суму этих чисел
+    result = sum(sum_list2)
+
+# print(sum_list)
+# print(sum_list2)
+print(result)
+
