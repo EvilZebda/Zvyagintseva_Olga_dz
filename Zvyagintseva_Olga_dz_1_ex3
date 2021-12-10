@@ -1,1 +1,22 @@
 
+# Реализовать склонение слова «процент» во фразе «N процентов».
+# Вывести эту фразу на экран отдельной строкой для каждого из чисел в интервале от 1 до 100
+
+percent_list = ['процент', 'процента', 'процентов']
+exceptions_list = list(range(11, 20))
+ending_234 = str(list(range(2, 5)))
+ending_56789 = str(list(range(5, 10)))
+for i in range(1, 101):
+    if i in exceptions_list:
+        print(f'{i} {percent_list[2]}')
+    else:
+        i = str(i)
+        if i[-1] == '1':
+            print(f'{i} {percent_list[0]}')
+        elif i[-1] in ending_234:
+            print(f'{i} {percent_list[1]}')
+        elif i[-1] in ending_56789:
+            print(f'{i} {percent_list[2]}')
+        else:
+            print(f'{i} {percent_list[2]}')
+
