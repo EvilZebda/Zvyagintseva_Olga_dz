@@ -1,0 +1,16 @@
+# Необходимо его обработать список — обособить каждое целое число кавычками
+# и дополнить нулём до двух целочисленных разрядов
+
+input_list = ['в', '5', 'часов', '17', 'минут', 'температура', 'воздуха', 'была', '+5', 'градусов']
+
+for i in range(len(input_list)):
+    element = input_list.pop(0)
+
+    if element.isdigit():
+        input_list.append(f'"{int(element):02d}"')
+    elif element[0] == '+':
+        input_list.append(f'"+{int(element):02d}"')
+    else:
+        input_list.append(element)
+
+print(' '.join(input_list))
