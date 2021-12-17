@@ -1,0 +1,17 @@
+"""function returns 'n' jokes"""
+from random import choice
+
+nouns = ["автомобиль", "лес", "огонь", "город", "дом"]
+adverbs = ["сегодня", "вчера", "завтра", "позавчера", "ночью"]
+adjectives = ["веселый", "яркий", "зеленый", "утопичный", "мягкий"]
+
+
+def get_jokes(n):
+    a = []
+    for i in range(0, n):
+        a += [f'{choice(nouns)} {choice(adverbs)} {choice(adjectives)}']
+
+    return a
+
+
+print(get_jokes(5))
