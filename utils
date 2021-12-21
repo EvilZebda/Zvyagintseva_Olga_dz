@@ -1,0 +1,31 @@
+import requests
+from datetime import datetime
+
+
+def currency_rates(currency, url="http://www.cbr.ru/scripts/XML_daily.asp"):
+    if currency != '':
+        currency = currency.upper()
+        answer = requests.get(url)
+        cur_answer = answer.text.split(currency)
+        if len(cur_answer) != 1:
+            value = cur_answer[1].split("</Value>")[0].split("<Value>")[1]
+            value = float(value.replace(",", "."))
+            date = answer.headers["Date"]
+            date = datetime.strptime(date, "%a, %d %b %Y %H:%M:%S GMT").date()
+            return value, date
+
+
+if __name__ == "__main__":
+    print((currency_rates("USD")))
+    print((currency_rates("eUr")))
+    print((currency_rates("rhgdr")))
+    print((currency_rates("")))
+
+'''Или в отдельный файл импортировать данный модуль и вызвать функцию:
+import utils
+
+print((utils.currency_rates("USD")))
+print((utils.currency_rates("eUr")))
+print((utils.currency_rates("rhgdr")))
+print((utils.currency_rates("")))
+'''
