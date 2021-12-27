@@ -1,0 +1,25 @@
+def thesaurus_adv(*leter_names):
+    dict_letters = {}
+    for name in leter_names:
+        surnames = name.split()[1]
+        if surnames[0] not in dict_letters.keys():
+            dict_letters.update({surnames[0]: {}})
+    for letter in dict_letters.keys():
+        dict_names = {}
+        for name in leter_names:
+            names = name.split()[0]
+            surnames = name.split()[1]
+            if surnames[0] == letter:
+                if names[0] not in dict_names.keys():
+                    dict_names.update({names[0]: [name]})
+                else:
+                    dict_names[names[0]].append(name)
+        dict_letters.update({letter: dict_names})
+    return dict_letters
+
+
+input_name = thesaurus_adv("Екатерина Солодова", "Александр Пчелинцев", "Иван Волков", "Сергей Петров", "Илья Серов",
+                           "Ирина Иванова")
+
+for k in sorted(input_name.keys()):
+    print(k, ':', input_name[k])

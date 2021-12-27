@@ -1,0 +1,32 @@
+# Словарь имеет смысл размещать вне тела функции, т.к. иначе область видимости будет ограничиваться самой функцией
+# и могут возникнуть сложности, если понадобится добавить в него элементы.
+translate = {
+    'one': 'один',
+    'two': 'два',
+    'three': 'три',
+    'four': 'четыре',
+    'five': 'пять',
+    'six': 'шесть',
+    'seven': 'семь',
+    'eight': 'восемь',
+    'nine': 'девять',
+    'ten': 'десять'
+}
+
+
+def num_translate(english):
+    return translate.get(english)
+
+
+while True:
+    user_inquiry = input('Enter the number in text format or press "q" to exit: ')
+    if user_inquiry == 'q':
+        break
+    elif user_inquiry.istitle():
+        if num_translate(user_inquiry.lower()) is None:
+            print(num_translate(user_inquiry))
+        else:
+            print(num_translate(user_inquiry.lower()).title())
+    else:
+        print(num_translate(user_inquiry))
+        
