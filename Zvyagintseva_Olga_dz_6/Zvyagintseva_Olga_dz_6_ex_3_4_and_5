@@ -1,0 +1,47 @@
+import os
+import sys
+from itertools import zip_longest
+
+
+# Генератор, который позволяет обрабатывать данные больше ОЗУ
+def gen_users_hobby(user_data, hobby_data):
+    with open(user_data, "r", encoding="utf-8") as user_f, open(hobby_data, "r", encoding="utf-8") as hobby_f:
+        for user, hobby in zip_longest(user_f, hobby_f):
+            yield user.removesuffix("\n"), hobby.removesuffix("\n") if hobby else None
+
+
+# Записываем данные в новый файл
+def groping(users_hobby_data, user_data, hobby_data):
+    # Проверяем соответствие имя:хобби
+    if not (os.path.isfile(user_data) or
+            os.path.isfile(hobby_data)):
+        return -1
+
+    with open(users_hobby_data, "w", encoding="utf-8") as out_file:
+        for line in gen_users_hobby(user_data, hobby_data):
+            print(f"{line[0]}: {line[1]}", file=out_file)
+
+    return 0
+
+
+# Задаем имя файлов
+users_csv = ""
+hobby_csv = ""
+users_hobby = ""
+
+if len(sys.argv[1:]) >= 3:
+    users_csv = sys.argv[1]
+    hobby_csv = sys.argv[2]
+    users_hobby = sys.argv[3]
+
+# Если имя не присвоено, устанавливаем значения по умолчанию
+if not users_csv:
+    users_csv = "./users.csv"
+
+if not hobby_csv:
+    hobby_csv = "./hobby.csv"
+
+if not users_hobby:
+    users_hobby = "./users_hobby.txt"
+
+exit(groping(user_data=users_csv, hobby_data=hobby_csv, users_hobby_data=users_hobby))
