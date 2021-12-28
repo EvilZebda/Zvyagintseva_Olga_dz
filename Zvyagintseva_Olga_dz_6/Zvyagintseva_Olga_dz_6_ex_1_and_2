@@ -1,0 +1,21 @@
+"""Получаю лог, содержащий ip, тип запроса и ресурс, используя при этом генератор,
+который позволяет обрабатывать данные, превышающие ОЗУ"""
+
+
+def parse_log():
+    with open("nginx_logs.txt", "r", encoding="utf-8") as f:
+        for line in f:
+            request = line.split('"')[1]
+            yield line.split()[0], request.split()[0], request.split()[1]
+
+
+parsed = parse_log()
+print(type(parsed))  # Убеждаюсь, что используется генератор
+
+"""Из полученного лога получаю данные о спамере"""
+spam = {}
+for log in parsed:
+    spam[log[0]] = spam.get(log[0], 0) + 1
+spammer = max(spam.items(), key=lambda x: x[1])
+
+print(spammer)
