@@ -1,0 +1,15 @@
+def type_logger(func):
+    def wrapper(*args):
+        return f'{func.__name__}({args[0]}: {type(args[0])})'
+    return wrapper
+
+
+@type_logger
+def calc_cube(x):
+    return x ** 3
+
+
+a = calc_cube(6)
+b = calc_cube("6")
+c = calc_cube(6.5)
+print(f"{a, b, c}")
