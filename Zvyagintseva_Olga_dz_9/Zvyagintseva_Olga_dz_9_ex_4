@@ -1,0 +1,83 @@
+class Car:
+
+    def __init__(self, name, color, speed):
+        self.name = name
+        self.color = color
+        self.speed = speed
+        print(f"Type of transport: {self.name}\n"
+              f"Color: {self.color}")
+
+    def go(self):
+        print(f"{self.name} started moving")
+
+    def stop(self):
+        print(f"{self.name} stopped")
+
+    def turn(self, direction):
+        print(f"{self.name} turned {direction}.")
+
+    def show_speed(self):
+        return f"{self.name} speed: {self.speed}."
+
+
+class WorkCar(Car):
+
+    def __init__(self, name, color, speed):
+        super().__init__(name, color, speed)
+
+    def show_speed(self):
+        if self.speed > 40:
+            print("Over speed!")
+        return f"{self.name} speed: {self.speed}."
+
+
+class TownCar(Car):
+
+    def __init__(self, name, color, speed):
+        super().__init__(name, color, speed)
+
+    def show_speed(self):
+        if self.speed > 60:
+            print("Over speed!")
+        return f"{self.name} speed: {self.speed}."
+
+
+class SportCar(Car):
+
+    def __init__(self, name, color, speed):
+        super().__init__(name, color, speed)
+
+
+class PoliceCar(Car):
+
+    def __init__(self, name, color, speed):
+        super().__init__(name, color, speed)
+
+
+print(f"\n{' example 1 ':*^30}")
+town_car = TownCar('TownCar', 'BLUE', 40)
+town_car.go()
+print(town_car.show_speed())
+town_car.turn("left")
+town_car.stop()
+
+print(f"\n{' example 2 ':*^30}")
+sport_car = SportCar('SportCar', 'RED', 140)
+sport_car.go()
+print(sport_car.show_speed())
+sport_car.turn("right")
+sport_car.stop()
+
+print(f"\n{' example 3 ':*^30}")
+work_car = WorkCar('WorkCar', 'GREEN', 65)
+work_car.go()
+print(work_car.show_speed())
+work_car.turn("left")
+work_car.stop()
+
+print(f"\n{' example 4 ':*^30}")
+police_car = PoliceCar('PoliceCar', 'WHITE', 110)
+police_car.go()
+print(police_car.show_speed())
+police_car.turn("right")
+police_car.stop()
