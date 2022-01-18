@@ -1,0 +1,31 @@
+class Stationery:
+    def __init__(self, title='tool'):
+        self.title = title
+
+    def draw(self):
+        print(f"Start rendering ")
+
+
+class Pen(Stationery):
+    def draw(self):
+        print(f"Start rendering with a pen.")
+
+
+class Pencil(Stationery):
+    def draw(self, object_to_draw):
+        print(f"Start rendering {object_to_draw} with a pencil.")
+
+
+class Handle(Stationery):
+    def draw(self, object_to_draw):
+        print(f"Start rendering {object_to_draw} with a handle.")
+
+
+tool = Stationery()
+tool.draw()
+triangle = Pen()
+triangle.draw()
+circle = Pencil()
+circle.draw("circle")
+square = Handle()
+square.draw("square")
