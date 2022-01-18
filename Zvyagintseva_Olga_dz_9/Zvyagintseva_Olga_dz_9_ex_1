@@ -1,0 +1,34 @@
+from time import sleep
+from enum import Enum
+
+
+class Colour(Enum):
+    red = 0
+    yellow = 1
+    green = 2
+
+
+class TrafficLight:
+    __colour = Colour.red
+    __move: int = 1
+
+    def running(self):
+
+        for _ in range(10):
+            if self.__colour == Colour.red:
+                print(self.__colour.name)
+                sleep(7)
+                self.__move = 1
+            elif self.__colour == Colour.yellow:
+                print(self.__colour.name)
+                sleep(2)
+            elif self.__colour == Colour.green:
+                print(self.__colour.name)
+                sleep(4)
+                self.__move = -1
+
+            self.__colour = Colour(self.__colour.value + self.__move)
+
+
+traffic = TrafficLight()
+traffic.running()
