@@ -1,0 +1,23 @@
+class Worker:
+
+    def __init__(self, name, surname, position, wage, bonus):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        self._income = {"wage": wage,
+                        "bonus": bonus}
+
+
+class Position(Worker):
+
+    def get_full_name(self):
+        return f'{self.surname} {self.name}'
+
+    def get_total_income(self):
+        return self._income.get('wage') + self._income.get('bonus')
+
+
+person = Position('Zebda', 'Evil', 'engineer', 100000, 20000)
+print(f'Full name: {person.get_full_name()}')
+print(f'Income: {person.get_total_income()}')
+
