@@ -1,0 +1,29 @@
+from itertools import zip_longest
+
+
+class Matrix:
+    def __init__(self, data):
+        self.matrix = data
+
+    def __str__(self):
+        print(f'-' * (len(self.matrix[0]) * 6 + 1))
+        for items in self.matrix:
+            for i in items:
+                print(f'| {i:^4d}', end='')
+            print('|')
+        return f'-' * (len(self.matrix[0]) * 6 + 1)
+
+    def __add__(self, other):
+        sum_matrix = []
+        for items_self, item_other in zip_longest(self.matrix, other.matrix, fillvalue=0):
+            result = list(map(lambda x: x[0] + x[1], zip_longest(items_self, item_other, fillvalue=0)))
+            sum_matrix.append(result)
+        return Matrix(sum_matrix)
+
+
+matrix_a = Matrix([[5, 32], [7, 89]])
+matrix_b = Matrix([[9, 1, 22, 77], [1, 2, 3, 4]])
+
+print(matrix_b)
+
+print(matrix_a + matrix_b, '\n', type(matrix_a + matrix_b))
