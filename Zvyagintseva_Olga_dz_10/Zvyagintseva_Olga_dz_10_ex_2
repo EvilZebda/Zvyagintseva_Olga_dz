@@ -1,0 +1,28 @@
+from abc import ABC, abstractmethod
+
+
+class Clothing(ABC):
+    def __init__(self, param):
+        self.param = param
+
+    @abstractmethod
+    def consumption(self):
+        pass
+
+
+class Coat(Clothing):
+    @property
+    def consumption(self):
+        return self.param / 6.5 + 0 / 5
+
+
+class Suit(Clothing):
+    @property
+    def consumption(self):
+        return self.param * 2 + 0.3
+
+
+ex_1 = Coat(44)
+ex_2 = Suit(1.7)
+print(ex_1.consumption)
+print(ex_2.consumption)
