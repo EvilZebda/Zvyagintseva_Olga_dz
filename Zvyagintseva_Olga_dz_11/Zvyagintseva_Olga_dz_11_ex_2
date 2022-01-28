@@ -1,0 +1,25 @@
+class DivZeroError(Exception):
+    pass
+
+
+while True:
+    print('Операция деления.')
+    num_1, = input('Введите делимое или "q" для выхода: ')
+    if num_1 == 'q':
+        print('Выход')
+        break
+    num_2 = input('Введите делитель или "q" для выхода: ')
+    if num_2 == 'q':
+        print('Выход')
+        break
+    else:
+        try:
+            num_1 = int(num_1)
+            num_2 = int(num_2)
+            if num_2 == 0:
+                raise DivZeroError('Ошибка. Делимое не может быть нулем!')
+            result = num_1 / num_2
+        except DivZeroError as err:
+            print(err)
+        else:
+            print(f'Результат: {result}')

@@ -1,0 +1,32 @@
+class Date:
+
+    def __init__(self, date):
+        if self.valid_date(date):
+            self.date = date
+        else:
+            raise ValueError('Неверная дата! Проверьте формат ввода данных «день-месяц-год»')
+
+    @classmethod
+    def get_date_numbers(cls, date):
+        return [num for num in map(int, date.split('-'))]
+
+    @staticmethod
+    def valid_date(date):
+        date_numbers = Date.get_date_numbers(date)
+        result = True
+        if len(date_numbers) != 3:
+            result = False
+        elif not 1 <= date_numbers[0] <= 31:
+            result = False
+        elif not 1 <= date_numbers[1] <= 12:
+            result = False
+        elif date_numbers[2] < 0:
+            result = False
+        return result
+
+
+date_object = Date('28-01-2022')
+print(Date.get_date_numbers(date_object.date))
+print(Date.valid_date(date_object.date))
+
+
