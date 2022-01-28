@@ -1,0 +1,17 @@
+class NoNumError(Exception):
+    pass
+
+
+result_list = []
+while True:
+    try:
+        value = input('Введите число, которое необходимо добавить в список или "stop" для выхода: ')
+        if value == 'stop':
+            break
+        elif not value.isdigit():
+            raise NoNumError
+    except NoNumError:
+        print('Допустимы только числа!')
+    else:
+        result_list.append(int(value))
+print(result_list)
